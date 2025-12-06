@@ -121,3 +121,18 @@
 -dontoptimize
 -dontpreverify
 -dontwarn org.jetbrains.annotations.**
+
+##########################
+## IGNORE XR MISSING CLASSES
+##########################
+# XR packages used by androidx.xr.compose.material3
+-dontwarn com.android.extensions.xr.**
+-dontwarn com.google.androidxr.**
+-dontwarn com.google.imp.splitengine.**
+-dontwarn com.android.extensions.xr.node.**
+-dontwarn com.android.extensions.xr.splitengine.**
+-dontwarn com.android.extensions.xr.subspace.**
+-dontwarn com.android.extensions.xr.function.**
+
+# Keep XR Compose Material3 to avoid being removed
+-keep class androidx.xr.compose.material3.** { *; }
