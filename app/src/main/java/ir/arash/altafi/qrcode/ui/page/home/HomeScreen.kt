@@ -23,8 +23,6 @@ fun HomeScreen(navController: NavHostController) {
             modifier = Modifier.fillMaxWidth()
         ) {
             Text("Scan QR Code")
-
-
         }
 
         Spacer(Modifier.height(16.dp))

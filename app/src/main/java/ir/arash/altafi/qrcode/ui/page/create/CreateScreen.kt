@@ -75,14 +75,16 @@ fun CreateScreen(
                     Text("Text ...")
                 },
                 trailingIcon = {
-                    Icon(
-                        imageVector = Icons.Default.Close,
-                        contentDescription = "Close",
-                        modifier = Modifier.clickable {
-                            text = ""
-                            qrBitmap = null
-                        }
-                    )
+                    if (text.isNotEmpty() || qrBitmap != null) {
+                        Icon(
+                            imageVector = Icons.Default.Close,
+                            contentDescription = "Close",
+                            modifier = Modifier.clickable {
+                                text = ""
+                                qrBitmap = null
+                            }
+                        )
+                    }
                 },
                 singleLine = true,
                 maxLines = 1,
