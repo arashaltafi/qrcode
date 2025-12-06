@@ -41,30 +41,32 @@ fun HistoryScreen(
     ) {
         when (historyViewModelApiState) {
             is ApiState.Success -> {
-//                LazyColumn(
-//                    Modifier
-//                        .fillMaxSize()
-//                        .padding(20.dp)
-//                ) {
-//                    items(list.size) { count ->
-//                        val item = list[count]
-//
-//                        Column(Modifier.padding(12.dp)) {
-//                            Text(
-//                                text = item.text,
-//                                fontSize = 18.sp
-//                            )
-//                            Text(
-//                                text = SimpleDateFormat("yyyy-MM-dd HH:mm", Locale.US)
-//                                    .format(Date(item.time)),
-//                                fontSize = 12.sp,
-//                                color = Color.Gray
-//                            )
-//
-//                            HorizontalDivider()
-//                        }
-//                    }
-//                }
+                val list = (historyViewModelApiState as ApiState.Success).data
+
+                LazyColumn(
+                    Modifier
+                        .fillMaxSize()
+                        .padding(20.dp)
+                ) {
+                    items(list.size) { count ->
+                        val item = list[count]
+
+                        Column(Modifier.padding(12.dp)) {
+                            Text(
+                                text = item.text,
+                                fontSize = 18.sp
+                            )
+                            Text(
+                                text = SimpleDateFormat("yyyy-MM-dd HH:mm", Locale.US)
+                                    .format(Date(item.time)),
+                                fontSize = 12.sp,
+                                color = Color.Gray
+                            )
+
+                            HorizontalDivider()
+                        }
+                    }
+                }
             }
 
             is ApiState.Error -> {
