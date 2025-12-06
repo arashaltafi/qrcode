@@ -8,6 +8,7 @@ import dagger.hilt.InstallIn
 import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
 import ir.arash.altafi.qrcode.data.db.AppDatabase
+import ir.arash.altafi.qrcode.data.db.QRCodeDao
 import ir.arash.altafi.qrcode.data.db.TestDao
 import javax.inject.Singleton
 import kotlin.jvm.java
@@ -28,5 +29,11 @@ object DatabaseModule {
     @Provides
     fun provideTestDao(database: AppDatabase): TestDao {
         return database.testDao()
+    }
+
+    @Singleton
+    @Provides
+    fun provideQRCodeDao(database: AppDatabase): QRCodeDao {
+        return database.qrCodeDao()
     }
 }

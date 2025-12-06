@@ -52,6 +52,12 @@ dependencies {
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
 
+    // Swipe
+    implementation(libs.accompanist.swiperefresh)
+
+    // Lottie
+    implementation(libs.lottie.compose)
+
     // Compose
     implementation(libs.androidx.activity.compose)
     implementation(platform(libs.androidx.compose.bom))

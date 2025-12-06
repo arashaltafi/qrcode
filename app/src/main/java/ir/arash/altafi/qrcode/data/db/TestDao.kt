@@ -13,4 +13,7 @@ interface TestDao {
 
     @Query("SELECT * FROM test WHERE id = :id")
     suspend fun getTestById(id: String): TestEntity?
+
+    @Query("SELECT * FROM test")
+    suspend fun getAllTests(): List<TestEntity>
 }
