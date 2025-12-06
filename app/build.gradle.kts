@@ -19,7 +19,7 @@ android {
         targetSdk = 36
         versionCode = 1
         versionName = "1.0"
-        multiDexEnabled = true
+        multiDexEnabled = false
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
 
@@ -116,7 +116,6 @@ dependencies {
     implementation(libs.androidx.compose.ui.tooling.preview)
 
     // Material
-    implementation(libs.material3)
     implementation(libs.androidx.material3)
     implementation(libs.androidx.material)
     implementation(libs.androidx.material.icons.extended.android)
@@ -145,16 +144,7 @@ dependencies {
 
     // Hilt
     implementation(libs.hilt.android)
-    implementation(libs.androidx.hilt.work)
     implementation(libs.androidx.hilt.navigation.compose)
     implementation(libs.androidx.compose.foundation.layout)
-    kapt(libs.androidx.hilt.compiler)
     kapt(libs.hilt.android.compiler)
-
-    // WorkManager Kotlin + coroutines
-    implementation(libs.androidx.work.runtime.ktx)
-
-    // MultiDex
-    implementation(libs.androidx.multidex)
-
 }

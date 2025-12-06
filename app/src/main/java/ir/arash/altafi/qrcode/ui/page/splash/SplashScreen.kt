@@ -69,7 +69,7 @@ fun SplashScreen(
 
         LoadingIndicators(
             isInfinite = true,
-            type = LoadingIndicatorType.LINEAR_WAVY,
+            type = LoadingIndicatorType.LINEAR,
         )
 
 

@@ -98,7 +98,7 @@ fun DetailScreen(
                 ) {
                     LoadingIndicators(
                         isInfinite = true,
-                        type = LoadingIndicatorType.CIRCULAR_WAVY
+                        type = LoadingIndicatorType.CIRCULAR
                     )
                 }
             }
