@@ -5,6 +5,8 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.unit.TextUnit
+import androidx.compose.ui.unit.sp
 import kotlinx.coroutines.delay
 import kotlin.text.indices
 import kotlin.text.take
@@ -15,6 +17,7 @@ fun TypewriterText(
     text: String,
     fontWeight: FontWeight = FontWeight.Normal,
     color: Color = Color.White,
+    fontSize: TextUnit = 24.sp,
     delay: Long = 200L
 ) {
     var visibleText by remember { mutableStateOf("") }
@@ -32,5 +35,6 @@ fun TypewriterText(
         text = visibleText,
         color = color,
         fontWeight = fontWeight,
+        fontSize = fontSize
     )
 }

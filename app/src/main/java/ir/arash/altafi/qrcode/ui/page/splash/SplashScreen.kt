@@ -1,7 +1,6 @@
 package ir.arash.altafi.qrcode.ui.page.splash
 
 import androidx.compose.foundation.background
-import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
@@ -21,6 +20,10 @@ import ir.arash.altafi.qrcode.ui.component.TypewriterText
 import ir.arash.altafi.qrcode.navigation.Route
 import ir.arash.altafi.qrcode.ui.theme.*
 import kotlinx.coroutines.delay
+import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.unit.sp
+import ir.arash.altafi.qrcode.ui.component.LoadingIndicatorType
+import ir.arash.altafi.qrcode.ui.component.LoadingIndicators
 
 @Composable
 fun SplashScreen(
@@ -34,31 +37,14 @@ fun SplashScreen(
     LaunchedEffect(Unit) {
         delay(3000)
 
-        try {
-            navController.navigate(Route.Home) {
-                popUpTo(Route.Splash) {
-                    saveState = true
-                    inclusive = true
-                }
-                launchSingleTop = true
-                restoreState = true
+        navController.navigate(Route.Home) {
+            popUpTo(Route.Splash) {
+                saveState = true
+                inclusive = true
             }
-        } catch (_: Exception) {
-            navController.navigate(Route.Home) {
-                popUpTo(Route.Splash) {
-                    saveState = true
-                    inclusive = true
-                }
-                launchSingleTop = true
-                restoreState = true
-            }
+            launchSingleTop = true
+            restoreState = true
         }
-    }
-
-    val gradientColors = if (isSystemInDarkTheme()) {
-        listOf(Blue300, Blue400, Blue500)
-    } else {
-        listOf(Blue700, Blue500, Blue300)
     }
 
     Column(
@@ -66,7 +52,7 @@ fun SplashScreen(
             .fillMaxSize()
             .background(
                 brush = Brush.verticalGradient(
-                    colors = gradientColors
+                    colors = listOf(Blue300, Blue400, Blue500)
                 )
             )
             .padding(16.dp),
@@ -75,9 +61,15 @@ fun SplashScreen(
     ) {
         TypewriterText(
             modifier = Modifier.padding(top = 32.dp),
-            text = context.getString(R.string.app_name),
+            text = stringResource(R.string.app_name),
             color = White,
+            fontSize = 32.sp,
             fontWeight = FontWeight.Bold
+        )
+
+        LoadingIndicators(
+            isInfinite = true,
+            type = LoadingIndicatorType.LINEAR_WAVY,
         )
 
 
