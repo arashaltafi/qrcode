@@ -1,4 +1,4 @@
-package ir.arash.altafi.qrcode.ui.navigation
+package ir.arash.altafi.qrcode.navigation
 
 import androidx.compose.animation.*
 import androidx.compose.animation.core.tween

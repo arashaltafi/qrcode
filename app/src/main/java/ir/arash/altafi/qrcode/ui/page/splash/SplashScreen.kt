@@ -1,4 +1,4 @@
-package ir.arash.altafi.qrcode.ui.page
+package ir.arash.altafi.qrcode.ui.page.splash
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.isSystemInDarkTheme
@@ -18,7 +18,7 @@ import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import ir.arash.altafi.qrcode.R
 import ir.arash.altafi.qrcode.ui.component.TypewriterText
-import ir.arash.altafi.qrcode.ui.navigation.Route
+import ir.arash.altafi.qrcode.navigation.Route
 import ir.arash.altafi.qrcode.ui.theme.*
 import kotlinx.coroutines.delay
 

@@ -1,5 +1,6 @@
-package ir.arash.altafi.qrcode.ui.page
+package ir.arash.altafi.qrcode.ui.page.scan
 
+import android.Manifest
 import android.content.Intent
 import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
@@ -30,7 +31,7 @@ fun ScanScreen() {
     }
 
     LaunchedEffect(Unit) {
-        permissionLauncher.launch(android.Manifest.permission.CAMERA)
+        permissionLauncher.launch(Manifest.permission.CAMERA)
     }
 
     if (!hasPermission) {

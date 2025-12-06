@@ -4,6 +4,8 @@ plugins {
     alias(libs.plugins.kotlin.compose)
     id("kotlin-kapt")
     id("kotlin-parcelize")
+    id("com.google.dagger.hilt.android")
+    id("dagger.hilt.android.plugin")
     id("org.jetbrains.kotlin.plugin.serialization") version "2.2.21"
 }
 
@@ -17,7 +19,7 @@ android {
         targetSdk = 36
         versionCode = 1
         versionName = "1.0"
-
+        multiDexEnabled = true
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
 
@@ -58,7 +60,12 @@ dependencies {
     implementation(libs.androidx.compose.ui.tooling.preview)
 
     // Material
-    implementation(libs.androidx.compose.material3)
+    implementation(libs.material3)
+    implementation(libs.androidx.material3)
+    implementation(libs.androidx.material)
+    implementation(libs.androidx.material.icons.extended.android)
+    implementation(libs.androidx.compose.ui.graphics)
+    implementation(libs.androidx.compose.ui.tooling.preview)
 
     // Serialization
     implementation(libs.kotlinx.serialization.json)
@@ -71,4 +78,27 @@ dependencies {
 
     // Zxing Scanner
     implementation(libs.zxing.android.embedded)
+
+    // Room
+    implementation(libs.androidx.room.runtime)
+    kapt(libs.androidx.room.compiler)
+    implementation(libs.androidx.room.ktx)
+
+    // Gson
+    implementation(libs.gson)
+
+    // Hilt
+    implementation(libs.hilt.android)
+    implementation(libs.androidx.hilt.work)
+    implementation(libs.androidx.hilt.navigation.compose)
+    implementation(libs.androidx.compose.foundation.layout)
+    kapt(libs.androidx.hilt.compiler)
+    kapt(libs.hilt.android.compiler)
+
+    // WorkManager Kotlin + coroutines
+    implementation(libs.androidx.work.runtime.ktx)
+
+    // MultiDex
+    implementation(libs.androidx.multidex)
+
 }

@@ -1,4 +1,4 @@
-package ir.arash.altafi.qrcode.ui.page
+package ir.arash.altafi.qrcode.ui.page.history
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize

@@ -1,4 +1,4 @@
-package ir.arash.altafi.qrcode.ui.page
+package ir.arash.altafi.qrcode.ui.page.home
 
 import androidx.compose.foundation.layout.*
 import androidx.compose.material3.*
@@ -6,7 +6,7 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
-import ir.arash.altafi.qrcode.ui.navigation.Route
+import ir.arash.altafi.qrcode.navigation.Route
 
 @Composable
 fun HomeScreen(navController: NavHostController) {

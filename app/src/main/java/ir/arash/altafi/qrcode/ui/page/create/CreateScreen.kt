@@ -1,4 +1,4 @@
-package ir.arash.altafi.qrcode.ui.page
+package ir.arash.altafi.qrcode.ui.page.create
 
 import android.graphics.Bitmap
 import android.provider.MediaStore

@@ -1,4 +1,4 @@
-package ir.arash.altafi.qrcode.ui.navigation
+package ir.arash.altafi.qrcode.navigation
 
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
@@ -6,11 +6,11 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.navigation.compose.*
-import ir.arash.altafi.qrcode.ui.page.CreateScreen
-import ir.arash.altafi.qrcode.ui.page.HistoryScreen
-import ir.arash.altafi.qrcode.ui.page.HomeScreen
-import ir.arash.altafi.qrcode.ui.page.ScanScreen
-import ir.arash.altafi.qrcode.ui.page.SplashScreen
+import ir.arash.altafi.qrcode.ui.page.create.CreateScreen
+import ir.arash.altafi.qrcode.ui.page.history.HistoryScreen
+import ir.arash.altafi.qrcode.ui.page.home.HomeScreen
+import ir.arash.altafi.qrcode.ui.page.scan.ScanScreen
+import ir.arash.altafi.qrcode.ui.page.splash.SplashScreen
 import ir.arash.altafi.qrcode.ui.theme.QrCodeTheme
 
 @Composable
