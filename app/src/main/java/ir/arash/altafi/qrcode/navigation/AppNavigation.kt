@@ -1,6 +1,7 @@
 package ir.arash.altafi.qrcode.navigation
 
 import android.app.Activity
+import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -46,45 +47,48 @@ fun AppNavigation() {
     val currentDestination = currentBackStackEntry?.destination?.route
 
     val isHome = currentDestination == packageName + Route.Home.route
+    val isSplash = currentDestination == packageName + Route.Splash.route
 
     QrCodeTheme {
         Scaffold(
             modifier = Modifier.fillMaxSize(),
             topBar = {
-                TopAppBar(
-                    modifier = Modifier
-                        .clip(RoundedCornerShape(bottomEnd = 10.dp, bottomStart = 10.dp)),
-                    title = {
-                        Text(
-                            text = stringResource(R.string.app_name),
-                            color = White,
-                            fontSize = 24.sp,
-                            fontWeight = FontWeight.Bold
-                        )
-                    },
-                    colors = TopAppBarDefaults.topAppBarColors(
-                        containerColor = Blue700,
-                        titleContentColor = White,
-                    ),
-                    actions = {
-                        IconButton(
-                            onClick = {
-                                if (isHome) {
-                                    activity?.finish()
-                                } else {
-                                    navController.popBackStack()
-                                }
-                            }
-                        ) {
-                            Icon(
-                                modifier = Modifier.rotate(180f),
-                                imageVector = Icons.Default.ArrowBack,
-                                contentDescription = "Back",
-                                tint = White
+                AnimatedVisibility(visible = !isSplash) {
+                    TopAppBar(
+                        modifier = Modifier
+                            .clip(RoundedCornerShape(bottomEnd = 10.dp, bottomStart = 10.dp)),
+                        title = {
+                            Text(
+                                text = stringResource(R.string.app_name),
+                                color = White,
+                                fontSize = 24.sp,
+                                fontWeight = FontWeight.Bold
                             )
+                        },
+                        colors = TopAppBarDefaults.topAppBarColors(
+                            containerColor = Blue700,
+                            titleContentColor = White,
+                        ),
+                        actions = {
+                            IconButton(
+                                onClick = {
+                                    if (isHome) {
+                                        activity?.finish()
+                                    } else {
+                                        navController.popBackStack()
+                                    }
+                                }
+                            ) {
+                                Icon(
+                                    modifier = Modifier.rotate(180f),
+                                    imageVector = Icons.Default.ArrowBack,
+                                    contentDescription = "Back",
+                                    tint = White
+                                )
+                            }
                         }
-                    }
-                )
+                    )
+                }
             }
         ) { innerPadding ->
             NavHost(

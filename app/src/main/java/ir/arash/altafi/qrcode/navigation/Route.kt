@@ -9,27 +9,27 @@ sealed interface Route {
 
     @Serializable
     data object Splash : Route {
-        override val route: String = ".navigation.Route.SplashScreen"
+        override val route: String = ".navigation.Route.Splash"
     }
 
     @Serializable
     data object Home : Route {
-        override val route: String = ".navigation.Route.HomeScreen"
+        override val route: String = ".navigation.Route.Home"
     }
 
     @Serializable
     data object Scan : Route {
-        override val route: String = ".navigation.Route.ScanScreen"
+        override val route: String = ".navigation.Route.Scan"
     }
 
     @Serializable
     data object History : Route {
-        override val route: String = ".navigation.Route.HistoryScreen"
+        override val route: String = ".navigation.Route.History"
     }
 
     @Serializable
     data object Create : Route {
-        override val route: String = ".navigation.Route.CreateScreen"
+        override val route: String = ".navigation.Route.Create"
     }
 
 
