@@ -46,25 +46,29 @@ android {
 }
 
 dependencies {
-    // compose & android
+    // Androidx
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
+
+    // Compose
     implementation(libs.androidx.activity.compose)
     implementation(platform(libs.androidx.compose.bom))
     implementation(libs.androidx.compose.ui)
     implementation(libs.androidx.compose.ui.graphics)
     implementation(libs.androidx.compose.ui.tooling.preview)
+
+    // Material
     implementation(libs.androidx.compose.material3)
 
     // Serialization
     implementation(libs.kotlinx.serialization.json)
 
-    // navigation
+    // Navigation
     implementation(libs.androidx.navigation.compose)
 
-    // ZXing QR Generator
+    // Zxing QR Generator
     implementation(libs.core)
 
-    // ZXing Scanner (no MLKit)
+    // Zxing Scanner
     implementation(libs.zxing.android.embedded)
 }
