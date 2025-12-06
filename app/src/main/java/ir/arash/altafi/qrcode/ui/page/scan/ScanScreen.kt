@@ -4,6 +4,7 @@ import android.Manifest
 import android.content.Intent
 import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
@@ -11,17 +12,21 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.viewinterop.AndroidView
+import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
 import com.journeyapps.barcodescanner.CompoundBarcodeView
+import ir.arash.altafi.qrcode.ui.component.EmptyLayout
 import ir.arash.altafi.qrcode.ui.component.showResultDialog
 
 @Composable
-fun ScanScreen() {
+fun ScanScreen(
+    scanViewModel: ScanViewModel = hiltViewModel()
+) {
     val context = LocalContext.current
 
-    // ---------- CAMERA PERMISSION ----------
     var hasPermission by remember { mutableStateOf(false) }
 
     val permissionLauncher = rememberLauncherForActivityResult(
@@ -35,22 +40,32 @@ fun ScanScreen() {
     }
 
     if (!hasPermission) {
-        // You can show UI text "Need Camera Permission"
+        Box(
+            modifier = Modifier
+                .fillMaxSize(),
+            contentAlignment = Alignment.Center
+        ) {
+            EmptyLayout()
+        }
         return
     }
 
-    // ----------- ZXING CAMERA VIEW -----------
     AndroidView(
         modifier = Modifier.fillMaxSize(),
         factory = { ctx ->
             val scanner = CompoundBarcodeView(ctx)
             scanner.initializeFromIntent(Intent())
-            scanner.resume()      // IMPORTANT: start camera here
+            scanner.resume()
 
             scanner.decodeContinuous { result ->
                 scanner.pause()
 
-                showResultDialog(context, result.text) {
+                scanViewModel.addQrCode(result.text, System.currentTimeMillis())
+
+                showResultDialog(
+                    context = context,
+                    text = result.text
+                ) {
                     scanner.resume()
                 }
             }

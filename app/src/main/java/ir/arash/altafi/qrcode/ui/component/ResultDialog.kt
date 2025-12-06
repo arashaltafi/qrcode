@@ -8,7 +8,11 @@ import android.content.Intent
 import android.widget.Toast
 import androidx.core.net.toUri
 
-fun showResultDialog(context: Context, text: String, onContinue: () -> Unit) {
+fun showResultDialog(
+    context: Context,
+    text: String,
+    onContinue: () -> Unit
+) {
     AlertDialog.Builder(context)
         .setTitle("QR Result")
         .setMessage(text)
@@ -16,7 +20,8 @@ fun showResultDialog(context: Context, text: String, onContinue: () -> Unit) {
             try {
                 val intent = Intent(Intent.ACTION_VIEW, text.toUri())
                 context.startActivity(intent)
-            } catch (e: Exception) {}
+            } catch (_: Exception) {
+            }
             onContinue()
         }
         .setNegativeButton("Copy") { _, _ ->

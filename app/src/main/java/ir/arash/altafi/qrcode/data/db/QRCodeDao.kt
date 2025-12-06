@@ -10,7 +10,7 @@ import ir.arash.altafi.qrcode.data.model.QRCodeEntity
 @Dao
 interface QRCodeDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insertQrCode(qrcode: QRCodeEntity)
+    suspend fun insertQrCode(qrcode: QRCodeEntity): Long
 
     @Delete
     suspend fun removeQrCode(qrcode: QRCodeEntity)
