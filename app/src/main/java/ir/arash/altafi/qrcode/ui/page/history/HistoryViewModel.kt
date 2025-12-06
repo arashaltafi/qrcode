@@ -11,6 +11,10 @@ class HistoryViewModel @Inject constructor(
     private val repository: HistoryRepository
 ) : BaseViewModel<List<QRCodeEntity>>() {
 
+    init {
+        getAll()
+    }
+
     fun getAll() {
         callDatabase(
             block = {
