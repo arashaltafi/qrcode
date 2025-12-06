@@ -44,6 +44,7 @@ android {
             enableV2Signing = true
         }
     }
+
     buildTypes {
         getByName("debug") {
             signingConfig = signingConfigs.getByName("debug")
