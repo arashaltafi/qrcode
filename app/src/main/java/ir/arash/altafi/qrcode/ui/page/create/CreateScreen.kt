@@ -25,13 +25,15 @@ import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
 import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
+import androidx.navigation.NavHostController
 import ir.arash.altafi.qrcode.utils.Utils
 import ir.arash.altafi.qrcode.utils.ext.toast
 import kotlinx.coroutines.delay
 
 @Composable
 fun CreateScreen(
-    createViewModel: CreateViewModel = hiltViewModel()
+    createViewModel: CreateViewModel = hiltViewModel(),
+    navController: NavHostController
 ) {
     val context = LocalContext.current
 
@@ -146,8 +148,13 @@ fun CreateScreen(
                             name,
                             "QR Code Image"
                         )
-                        createViewModel.addQrCode(text, System.currentTimeMillis())
+                        createViewModel.addQrCode(
+                            text = text,
+                            bitmap = bmp,
+                            time = System.currentTimeMillis()
+                        )
                         context.toast("QR Code saved successfully")
+                        navController.popBackStack()
                     },
                     modifier = Modifier.fillMaxWidth()
                 ) {

@@ -15,9 +15,9 @@ interface QRCodeDao {
     @Delete
     suspend fun removeQrCode(qrcode: QRCodeEntity)
 
-    @Query("SELECT * FROM qrcode WHERE id = :id")
-    suspend fun getQrCodeById(id: String): QRCodeEntity?
-
     @Query("SELECT * FROM qrcode")
     suspend fun getAllQrCodes(): List<QRCodeEntity>
+
+    @Query("SELECT * FROM qrcode WHERE id = :id")
+    suspend fun getQrCodeById(id: Int): QRCodeEntity?
 }

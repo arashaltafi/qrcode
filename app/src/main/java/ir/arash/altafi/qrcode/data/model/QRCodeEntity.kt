@@ -1,5 +1,6 @@
 package ir.arash.altafi.qrcode.data.model
 
+import android.graphics.Bitmap
 import android.os.Parcelable
 import androidx.room.Entity
 import androidx.room.PrimaryKey
@@ -13,6 +14,8 @@ data class QRCodeEntity(
     val id: Int = 0,
     @SerializedName("text")
     val text: String,
+    @SerializedName("bitmap")
+    val bitmap: Bitmap,
     @SerializedName("time")
     val time: Long
 ) : Parcelable

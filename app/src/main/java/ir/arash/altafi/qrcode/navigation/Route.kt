@@ -32,4 +32,10 @@ sealed interface Route {
         override val route: String = ".navigation.Route.CreateScreen"
     }
 
+
+    @Serializable
+    data class Detail(val id: Int) : Route {
+        override val route: String = ".navigation.Route.Detail"
+    }
+
 }

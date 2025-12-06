@@ -54,13 +54,20 @@ fun ScanScreen(
         modifier = Modifier.fillMaxSize(),
         factory = { ctx ->
             val scanner = CompoundBarcodeView(ctx)
+
+            scanner.statusView.text = "Scan your QR Code"
+
             scanner.initializeFromIntent(Intent())
             scanner.resume()
 
             scanner.decodeContinuous { result ->
                 scanner.pause()
 
-                scanViewModel.addQrCode(result.text, System.currentTimeMillis())
+                scanViewModel.addQrCode(
+                    text = result.text,
+                    bitmap = result.bitmap,
+                    time = System.currentTimeMillis()
+                )
 
                 showResultDialog(
                     context = context,

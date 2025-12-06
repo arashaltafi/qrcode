@@ -27,11 +27,9 @@ import androidx.annotation.ColorInt
 import androidx.annotation.LayoutRes
 import androidx.annotation.RequiresApi
 import androidx.annotation.StyleRes
-import androidx.appcompat.app.AppCompatDialog
 import androidx.core.content.ContextCompat
 import androidx.core.content.FileProvider
 import androidx.core.net.toUri
-import androidx.vectordrawable.graphics.drawable.VectorDrawableCompat
 import ir.arash.altafi.qrcode.MainActivity
 import ir.arash.altafi.qrcode.R
 import java.io.File
@@ -59,21 +57,6 @@ fun Context.isDarkTheme(): Boolean {
 fun Context.inflateView(@LayoutRes layoutRes: Int): View {
     return LayoutInflater.from(this)
         .inflate(layoutRes, null)
-}
-
-fun Context.makeDialog(
-    @LayoutRes layoutRes: Int,
-    @StyleRes themRes: Int,
-    isBottom: Boolean = false
-): AppCompatDialog {
-    return AppCompatDialog(this, themRes)
-        .apply {
-            setContentView(inflateView(layoutRes))
-            if (isBottom) {
-                val wManager: WindowManager.LayoutParams = this.window?.attributes!!
-                wManager.gravity = Gravity.BOTTOM or Gravity.CENTER
-            }
-        }
 }
 
 fun Context.openGoogleMap(lat: String, lng: String) {
@@ -237,10 +220,6 @@ fun Context.getAttr(attrID: Int): Int {
     val theme = this.theme
     theme.resolveAttribute(attrID, typedValue, true)
     return typedValue.data
-}
-
-fun Context.getDrawableCompat(res: Int): VectorDrawableCompat? {
-    return VectorDrawableCompat.create(resources, res, theme)
 }
 
 fun Context.hasPermissions(vararg permission: String): Boolean {

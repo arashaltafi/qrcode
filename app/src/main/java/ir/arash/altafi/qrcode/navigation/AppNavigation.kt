@@ -25,6 +25,7 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.compose.*
 import ir.arash.altafi.qrcode.R
 import ir.arash.altafi.qrcode.ui.page.create.CreateScreen
+import ir.arash.altafi.qrcode.ui.page.detail.DetailScreen
 import ir.arash.altafi.qrcode.ui.page.history.HistoryScreen
 import ir.arash.altafi.qrcode.ui.page.home.HomeScreen
 import ir.arash.altafi.qrcode.ui.page.scan.ScanScreen
@@ -32,7 +33,6 @@ import ir.arash.altafi.qrcode.ui.page.splash.SplashScreen
 import ir.arash.altafi.qrcode.ui.theme.Blue700
 import ir.arash.altafi.qrcode.ui.theme.QrCodeTheme
 import ir.arash.altafi.qrcode.ui.theme.White
-import kotlinx.coroutines.launch
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -116,12 +116,24 @@ fun AppNavigation() {
                 dynamicComposable<Route.Create>(
                     transitionType = TransitionType.NONE
                 ) { args, backStackEntry ->
-                    CreateScreen()
+                    CreateScreen(
+                        navController = navController
+                    )
                 }
                 dynamicComposable<Route.History>(
                     transitionType = TransitionType.NONE
                 ) { args, backStackEntry ->
-                    HistoryScreen()
+                    HistoryScreen(
+                        navController = navController
+                    )
+                }
+                dynamicComposable<Route.Detail>(
+                    transitionType = TransitionType.NONE
+                ) { args, backStackEntry ->
+                    DetailScreen(
+                        id = args.id,
+                        navController = navController,
+                    )
                 }
             }
 

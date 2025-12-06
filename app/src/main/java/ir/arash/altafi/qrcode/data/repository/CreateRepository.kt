@@ -8,7 +8,7 @@ import javax.inject.Inject
 import javax.inject.Singleton
 
 @Singleton
-class ScanRepository @Inject constructor(
+class CreateRepository @Inject constructor(
     private val qrCodeDao: QRCodeDao,
 ) : BaseRepository() {
 

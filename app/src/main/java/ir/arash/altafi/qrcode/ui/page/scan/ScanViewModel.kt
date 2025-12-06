@@ -1,5 +1,6 @@
 package ir.arash.altafi.qrcode.ui.page.scan
 
+import android.graphics.Bitmap
 import dagger.hilt.android.lifecycle.HiltViewModel
 import ir.arash.altafi.qrcode.data.repository.ScanRepository
 import ir.arash.altafi.qrcode.utils.base.BaseViewModel
@@ -10,10 +11,14 @@ class ScanViewModel @Inject constructor(
     private val repository: ScanRepository
 ) : BaseViewModel<Boolean>() {
 
-    fun addQrCode(text: String, time: Long) {
+    fun addQrCode(
+        text: String,
+        bitmap: Bitmap,
+        time: Long
+    ) {
         callDatabase(
             block = {
-                repository.addQrCode(text, time)
+                repository.addQrCode(text, bitmap, time)
             }
         )
     }
