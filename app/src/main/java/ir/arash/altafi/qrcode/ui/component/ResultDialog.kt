@@ -1,12 +1,9 @@
 package ir.arash.altafi.qrcode.ui.component
 
 import android.app.AlertDialog
-import android.content.ClipData
-import android.content.ClipboardManager
 import android.content.Context
-import android.content.Intent
-import android.widget.Toast
-import androidx.core.net.toUri
+import ir.arash.altafi.qrcode.utils.ext.copyToClipboard
+import ir.arash.altafi.qrcode.utils.ext.openURL
 
 fun showResultDialog(
     context: Context,
@@ -18,17 +15,13 @@ fun showResultDialog(
         .setMessage(text)
         .setPositiveButton("Open URL") { _, _ ->
             try {
-                val intent = Intent(Intent.ACTION_VIEW, text.toUri())
-                context.startActivity(intent)
+                context.openURL(text)
             } catch (_: Exception) {
             }
             onContinue()
         }
         .setNegativeButton("Copy") { _, _ ->
-            val clip = ClipData.newPlainText("qr", text)
-            val cm = context.getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
-            cm.setPrimaryClip(clip)
-            Toast.makeText(context, "Copied", Toast.LENGTH_SHORT).show()
+            context.copyToClipboard(text)
             onContinue()
         }
         .setNeutralButton("Close") { _, _ -> onContinue() }

@@ -115,6 +115,7 @@ fun CreateScreen(
                         context.toast("Text is empty")
                     } else {
                         qrBitmap = Utils.generateQrBitmap(finalText)
+                        keyboardController?.hide()
                     }
                 },
                 enabled = text.isNotEmpty(),

@@ -18,6 +18,7 @@ import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
@@ -46,6 +47,10 @@ fun HistoryScreen(
 ) {
     val context = LocalContext.current
     val historyViewModelApiState by historyViewModel.apiState.collectAsState()
+
+    LaunchedEffect(Unit) {
+        historyViewModel.getAll()
+    }
 
     BaseScreen(
         onRefresh = {
@@ -92,7 +97,7 @@ fun HistoryScreen(
                                 Row(
                                     modifier = Modifier
                                         .fillMaxWidth()
-                                        .padding(vertical = 8.dp, horizontal = 16.dp),
+                                        .padding(vertical = 4.dp, horizontal = 8.dp),
                                     horizontalArrangement = Arrangement.SpaceBetween,
                                     verticalAlignment = Alignment.CenterVertically
                                 ) {
@@ -113,12 +118,12 @@ fun HistoryScreen(
                                     ) {
                                         Text(
                                             text = item.text,
-                                            fontSize = 24.sp,
+                                            fontSize = 20.sp,
                                             fontWeight = FontWeight.Bold
                                         )
                                         Text(
                                             text = Utils.formatReminderDate(item.time),
-                                            fontSize = 16.sp,
+                                            fontSize = 14.sp,
                                             color = Color.Gray,
                                         )
                                     }
