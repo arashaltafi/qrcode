@@ -9,7 +9,6 @@ import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.asImageBitmap
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
@@ -22,6 +21,11 @@ import ir.arash.altafi.qrcode.data.model.QRCodeEntity
 import ir.arash.altafi.qrcode.ui.component.LoadingIndicatorType
 import ir.arash.altafi.qrcode.ui.component.LoadingIndicators
 import ir.arash.altafi.qrcode.ui.page.history.DeleteViewModel
+import ir.arash.altafi.qrcode.ui.theme.Blue500
+import ir.arash.altafi.qrcode.ui.theme.Gray500
+import ir.arash.altafi.qrcode.ui.theme.Green500
+import ir.arash.altafi.qrcode.ui.theme.Red500
+import ir.arash.altafi.qrcode.ui.theme.White
 import ir.arash.altafi.qrcode.utils.Utils
 import ir.arash.altafi.qrcode.utils.base.ApiState
 import ir.arash.altafi.qrcode.utils.base.BaseScreen
@@ -122,7 +126,6 @@ private fun DetailContent(
     ) {
         Column(
             horizontalAlignment = Alignment.CenterHorizontally,
-            modifier = Modifier.fillMaxWidth()
         ) {
             Card(
                 modifier = Modifier
@@ -157,21 +160,22 @@ private fun DetailContent(
                 text = "Created: $formattedTime",
                 textAlign = TextAlign.Center,
                 fontSize = 18.sp,
-                color = Color.Gray,
+                color = Gray500,
             )
         }
 
         Row(
-            horizontalArrangement = Arrangement.SpaceEvenly,
+            horizontalArrangement = Arrangement.spacedBy(8.dp),
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(bottom = 10.dp)
         ) {
             Button(
+                modifier = Modifier.weight(1f),
                 onClick = onDownload,
                 colors = ButtonDefaults.buttonColors(
-                    containerColor = Color.Blue,
-                    contentColor = Color.White
+                    containerColor = Blue500.copy(alpha = 0.5f),
+                    contentColor = White
                 )
             ) {
                 Icon(Icons.Default.ContentCopy, contentDescription = null)
@@ -180,10 +184,11 @@ private fun DetailContent(
             }
 
             Button(
+                modifier = Modifier.weight(1f),
                 onClick = onShare,
                 colors = ButtonDefaults.buttonColors(
-                    containerColor = Color.Green,
-                    contentColor = Color.White
+                    containerColor = Green500.copy(alpha = 0.5f),
+                    contentColor = White
                 )
             ) {
                 Icon(Icons.Default.Share, contentDescription = null)
@@ -192,10 +197,11 @@ private fun DetailContent(
             }
 
             Button(
+                modifier = Modifier.weight(1f),
                 onClick = onDelete,
                 colors = ButtonDefaults.buttonColors(
-                    containerColor = Color.Red,
-                    contentColor = Color.White
+                    containerColor = Red500.copy(alpha = 0.5f),
+                    contentColor = White
                 )
             ) {
                 Icon(Icons.Default.Delete, contentDescription = null)
