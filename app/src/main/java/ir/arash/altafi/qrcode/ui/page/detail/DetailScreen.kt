@@ -128,8 +128,7 @@ private fun DetailContent(
             horizontalAlignment = Alignment.CenterHorizontally,
         ) {
             Card(
-                modifier = Modifier
-                    .fillMaxWidth(),
+                modifier = Modifier.size(200.dp),
                 elevation = CardDefaults.cardElevation(
                     defaultElevation = 4.dp
                 ),
@@ -139,9 +138,7 @@ private fun DetailContent(
                     bitmap = data.bitmap.asImageBitmap(),
                     contentScale = ContentScale.Fit,
                     contentDescription = "QR Code",
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .wrapContentHeight()
+                    modifier = Modifier.fillMaxSize()
                 )
             }
 
@@ -178,9 +175,10 @@ private fun DetailContent(
                     contentColor = White
                 )
             ) {
-                Icon(Icons.Default.ContentCopy, contentDescription = null)
-                Spacer(Modifier.width(8.dp))
-                Text("Download")
+                Icon(
+                    imageVector = Icons.Default.Download,
+                    contentDescription = null
+                )
             }
 
             Button(
@@ -191,9 +189,10 @@ private fun DetailContent(
                     contentColor = White
                 )
             ) {
-                Icon(Icons.Default.Share, contentDescription = null)
-                Spacer(Modifier.width(8.dp))
-                Text("Share")
+                Icon(
+                    imageVector = Icons.Default.Share,
+                    contentDescription = null
+                )
             }
 
             Button(
@@ -204,9 +203,10 @@ private fun DetailContent(
                     contentColor = White
                 )
             ) {
-                Icon(Icons.Default.Delete, contentDescription = null)
-                Spacer(Modifier.width(8.dp))
-                Text("Delete")
+                Icon(
+                    imageVector = Icons.Default.Delete,
+                    contentDescription = null
+                )
             }
         }
     }
