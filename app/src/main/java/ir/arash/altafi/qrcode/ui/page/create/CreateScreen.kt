@@ -1,7 +1,6 @@
 package ir.arash.altafi.qrcode.ui.page.create
 
 import android.graphics.Bitmap
-import android.provider.MediaStore
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
@@ -142,11 +141,10 @@ fun CreateScreen(
                 Button(
                     onClick = {
                         val name = "qr_${System.currentTimeMillis()}.png"
-                        MediaStore.Images.Media.insertImage(
-                            context.contentResolver,
-                            bmp,
-                            name,
-                            "QR Code Image"
+                        Utils.downloadBitmap(
+                            context = context,
+                            bmp = bmp,
+                            name = name
                         )
                         createViewModel.addQrCode(
                             text = text,

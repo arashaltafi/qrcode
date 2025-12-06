@@ -11,6 +11,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.asImageBitmap
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
@@ -24,7 +25,6 @@ import ir.arash.altafi.qrcode.ui.page.history.DeleteViewModel
 import ir.arash.altafi.qrcode.utils.Utils
 import ir.arash.altafi.qrcode.utils.base.ApiState
 import ir.arash.altafi.qrcode.utils.base.BaseScreen
-import ir.arash.altafi.qrcode.utils.ext.copyToClipboard
 import ir.arash.altafi.qrcode.utils.ext.toast
 
 @Composable
@@ -63,8 +63,12 @@ fun DetailScreen(
                         context.toast("Deleted")
                         navController.popBackStack()
                     },
-                    onCopy = {
-                        context.copyToClipboard(qrCode.text)
+                    onDownload = {
+                        Utils.downloadBitmap(
+                            context = context,
+                            bmp = qrCode.bitmap,
+                            name = qrCode.text
+                        )
                     },
                     onShare = {
                         Utils.shareImage(
@@ -102,7 +106,7 @@ fun DetailScreen(
 private fun DetailContent(
     data: QRCodeEntity,
     onDelete: () -> Unit,
-    onCopy: () -> Unit,
+    onDownload: () -> Unit,
     onShare: () -> Unit
 ) {
     val formattedTime = remember(data.time) {
@@ -116,15 +120,13 @@ private fun DetailContent(
         verticalArrangement = Arrangement.SpaceBetween,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-
         Column(
             horizontalAlignment = Alignment.CenterHorizontally,
             modifier = Modifier.fillMaxWidth()
         ) {
             Card(
                 modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(16.dp),
+                    .fillMaxWidth(),
                 elevation = CardDefaults.cardElevation(
                     defaultElevation = 4.dp
                 ),
@@ -132,6 +134,7 @@ private fun DetailContent(
             ) {
                 Image(
                     bitmap = data.bitmap.asImageBitmap(),
+                    contentScale = ContentScale.Fit,
                     contentDescription = "QR Code",
                     modifier = Modifier
                         .fillMaxWidth()
@@ -164,19 +167,37 @@ private fun DetailContent(
                 .fillMaxWidth()
                 .padding(bottom = 10.dp)
         ) {
-            Button(onClick = onCopy) {
+            Button(
+                onClick = onDownload,
+                colors = ButtonDefaults.buttonColors(
+                    containerColor = Color.Blue,
+                    contentColor = Color.White
+                )
+            ) {
                 Icon(Icons.Default.ContentCopy, contentDescription = null)
                 Spacer(Modifier.width(8.dp))
-                Text("Copy")
+                Text("Download")
             }
 
-            Button(onClick = onShare) {
+            Button(
+                onClick = onShare,
+                colors = ButtonDefaults.buttonColors(
+                    containerColor = Color.Green,
+                    contentColor = Color.White
+                )
+            ) {
                 Icon(Icons.Default.Share, contentDescription = null)
                 Spacer(Modifier.width(8.dp))
                 Text("Share")
             }
 
-            Button(onClick = onDelete) {
+            Button(
+                onClick = onDelete,
+                colors = ButtonDefaults.buttonColors(
+                    containerColor = Color.Red,
+                    contentColor = Color.White
+                )
+            ) {
                 Icon(Icons.Default.Delete, contentDescription = null)
                 Spacer(Modifier.width(8.dp))
                 Text("Delete")

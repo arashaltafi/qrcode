@@ -5,6 +5,7 @@ import android.content.Intent
 import android.graphics.Bitmap
 import android.graphics.Color
 import android.net.Uri
+import android.provider.MediaStore
 import androidx.core.content.FileProvider
 import com.google.zxing.BarcodeFormat
 import com.google.zxing.qrcode.QRCodeWriter
@@ -114,5 +115,18 @@ object Utils {
         }
 
         return result
+    }
+
+    fun downloadBitmap(
+        context: Context,
+        bmp: Bitmap,
+        name: String
+    ) {
+        MediaStore.Images.Media.insertImage(
+            context.contentResolver,
+            bmp,
+            name,
+            "QR Code Image"
+        )
     }
 }

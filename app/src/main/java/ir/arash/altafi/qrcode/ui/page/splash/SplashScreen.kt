@@ -35,7 +35,7 @@ fun SplashScreen(
         context.packageManager.getPackageInfo(context.packageName, 0).versionName ?: "1.0"
 
     LaunchedEffect(Unit) {
-        delay(3000)
+        delay(5_000)
 
         navController.navigate(Route.Home) {
             popUpTo(Route.Splash) {
