@@ -1,21 +1,123 @@
-# Add project specific ProGuard rules here.
-# You can control the set of applied configuration files using the
-# proguardFiles setting in build.gradle.
-#
-# For more details, see
-#   http://developer.android.com/guide/developing/tools/proguard.html
+###############
+## HILT / DAGGER
+###############
+# Keep Hilt-generated classes
+-keep class dagger.hilt.** { *; }
+-keep class * extends dagger.hilt.internal.GeneratedComponent { *; }
+-keep class * extends dagger.hilt.internal.GeneratedComponentManager { *; }
+-keep class * extends dagger.hilt.internal.ComponentEntryPoint { *; }
 
-# If your project uses WebView with JS, uncomment the following
-# and specify the fully qualified class name to the JavaScript interface
-# class:
-#-keepclassmembers class fqcn.of.javascript.interface.for.webview {
-#   public *;
-#}
+# Keep Injected constructors
+-keepclassmembers class * {
+    @javax.inject.Inject <init>(...);
+}
 
-# Uncomment this to preserve the line number information for
-# debugging stack traces.
-#-keepattributes SourceFile,LineNumberTable
+# Prevent stripping annotations
+-keepattributes *Annotation*
 
-# If you keep the line number information, uncomment this to
-# hide the original source file name.
-#-renamesourcefileattribute SourceFile
+
+###############
+## ROOM DATABASE
+###############
+# Keep Entities, Dao, Database
+-keep class androidx.room.** { *; }
+-keep @androidx.room.Dao class * { *; }
+-keep @androidx.room.Entity class * { *; }
+-keep class * extends androidx.room.RoomDatabase { *; }
+
+# Keep Kotlin metadata for Room
+-keepattributes Signature, InnerClasses, EnclosingMethod, KotlinMetadata
+
+
+###############
+## GSON
+###############
+# Keep model classes (Gson uses reflection)
+-keep class com.google.gson.** { *; }
+-keep class * implements java.io.Serializable { *; }
+-keep class * {
+    @com.google.gson.annotations.SerializedName <fields>;
+}
+
+# Keep fields with SerializedName
+-keepclassmembers class * {
+    @com.google.gson.annotations.SerializedName <fields>;
+}
+
+
+###############
+## ZXING (QR / Barcode)
+###############
+-keep class com.google.zxing.** { *; }
+-keep class com.journeyapps.** { *; }
+
+# Avoid warnings
+-dontwarn com.google.zxing.**
+-dontwarn com.journeyapps.**
+
+
+###############
+## WORKMANAGER
+###############
+-keep class androidx.work.** { *; }
+-keep class * extends androidx.work.ListenableWorker { *; }
+
+-dontwarn androidx.work.**
+
+
+###############
+## LOTTIE
+###############
+-keep class com.airbnb.lottie.** { *; }
+-dontwarn com.airbnb.lottie.**
+
+
+###############
+## NAVIGATION COMPOSE
+###############
+-keep class androidx.navigation.** { *; }
+-dontwarn androidx.navigation.**
+
+
+###############
+## ANDROIDX / COMPOSE
+###############
+# Keep Compose runtime
+-keep class androidx.compose.** { *; }
+
+# Keep Kotlin metadata (VERY IMPORTANT)
+-keepattributes SourceFile, LineNumberTable, EnclosingMethod, EnclosingClass, InnerClasses, Signature
+
+
+###############
+## MATERIAL 3
+###############
+-keep class androidx.compose.material3.** { *; }
+-dontwarn androidx.compose.material3.**
+
+
+###############
+## MULTIDEX
+###############
+-keep class androidx.multidex.** { *; }
+
+
+###############
+## GSON (Bitmap in Entity)
+###############
+# Prevent Bitmap being stripped
+-keep class android.graphics.** { *; }
+
+
+###############
+## KOTLIN COROUTINES
+###############
+-dontwarn kotlinx.coroutines.**
+
+
+###############
+## SAFE DEFAULTS
+###############
+-dontoptimize
+-dontpreverify
+-dontwarn org.jetbrains.annotations.**

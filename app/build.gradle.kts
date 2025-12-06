@@ -23,13 +23,61 @@ android {
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
 
+    signingConfigs {
+        // debug already exists
+        getByName("debug") {
+//            keyAlias = "arash"
+//            keyPassword = "arash123@"
+//            storeFile = rootProject.file("app/release-keystore")
+//            storePassword = "arash123@"
+//            enableV1Signing = true
+//            enableV2Signing = true
+        }
+
+        // release may or may not exist — usually you can safely create it
+        maybeCreate("release").apply {
+            keyAlias = "arash"
+            keyPassword = "arash123@"
+            storeFile = rootProject.file("app/release-keystore")
+            storePassword = "arash123@"
+            enableV1Signing = true
+            enableV2Signing = true
+        }
+    }
     buildTypes {
-        release {
+        getByName("debug") {
+            signingConfig = signingConfigs.getByName("debug")
+            versionNameSuffix = "-debug"
+            isDebuggable = true
+            isCrunchPngs = false
             isMinifyEnabled = false
+            isShrinkResources = false
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
             )
+        }
+
+        getByName("release") {
+            signingConfig = signingConfigs.getByName("release")
+            isDebuggable = false
+            isCrunchPngs = true
+            isMinifyEnabled = true
+            isShrinkResources = true
+            proguardFiles(
+                getDefaultProguardFile("proguard-android-optimize.txt"),
+                "proguard-rules.pro"
+            )
+            multiDexKeepProguard = file("multidex-config.pro")
+        }
+    }
+
+    splits {
+        abi {
+            isEnable = true
+            reset()
+            include("arm64-v8a")
+            isUniversalApk = false
         }
     }
 
@@ -44,6 +92,7 @@ android {
 
     buildFeatures {
         compose = true
+        buildConfig = true
     }
 }
 
