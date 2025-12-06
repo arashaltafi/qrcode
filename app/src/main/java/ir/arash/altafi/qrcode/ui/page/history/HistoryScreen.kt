@@ -17,6 +17,7 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
+import ir.arash.altafi.qrcode.data.model.QRCodeEntity
 import ir.arash.altafi.qrcode.ui.component.LoadingIndicatorType
 import ir.arash.altafi.qrcode.ui.component.LoadingIndicators
 import ir.arash.altafi.qrcode.utils.base.ApiState
@@ -26,24 +27,12 @@ import java.text.SimpleDateFormat
 import java.util.Date
 import java.util.Locale
 
-data class QRCodeEntity(
-    val text: String,
-    val time: Long
-)
-
 @Composable
 fun HistoryScreen(
     historyViewModel: HistoryViewModel = hiltViewModel()
 ) {
     val context = LocalContext.current
     val historyViewModelApiState by historyViewModel.apiState.collectAsState()
-
-    val list = List(10) {
-        QRCodeEntity(
-            text = "Text $it",
-            time = System.currentTimeMillis()
-        )
-    }
 
     BaseScreen(
         onRefresh = {
@@ -52,30 +41,30 @@ fun HistoryScreen(
     ) {
         when (historyViewModelApiState) {
             is ApiState.Success -> {
-                LazyColumn(
-                    Modifier
-                        .fillMaxSize()
-                        .padding(20.dp)
-                ) {
-                    items(list.size) { count ->
-                        val item = list[count]
-
-                        Column(Modifier.padding(12.dp)) {
-                            Text(
-                                text = item.text,
-                                fontSize = 18.sp
-                            )
-                            Text(
-                                text = SimpleDateFormat("yyyy-MM-dd HH:mm", Locale.US)
-                                    .format(Date(item.time)),
-                                fontSize = 12.sp,
-                                color = Color.Gray
-                            )
-
-                            HorizontalDivider()
-                        }
-                    }
-                }
+//                LazyColumn(
+//                    Modifier
+//                        .fillMaxSize()
+//                        .padding(20.dp)
+//                ) {
+//                    items(list.size) { count ->
+//                        val item = list[count]
+//
+//                        Column(Modifier.padding(12.dp)) {
+//                            Text(
+//                                text = item.text,
+//                                fontSize = 18.sp
+//                            )
+//                            Text(
+//                                text = SimpleDateFormat("yyyy-MM-dd HH:mm", Locale.US)
+//                                    .format(Date(item.time)),
+//                                fontSize = 12.sp,
+//                                color = Color.Gray
+//                            )
+//
+//                            HorizontalDivider()
+//                        }
+//                    }
+//                }
             }
 
             is ApiState.Error -> {

@@ -5,19 +5,19 @@ import androidx.room.Delete
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
-import ir.arash.altafi.qrcode.ui.page.history.QRCodeEntity
+import ir.arash.altafi.qrcode.data.model.QRCodeEntity
 
 @Dao
 interface QRCodeDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insertQrCode(test: QRCodeEntity)
+    suspend fun insertQrCode(qrcode: QRCodeEntity)
 
     @Delete
-    suspend fun removeQrCode(test: QRCodeEntity)
+    suspend fun removeQrCode(qrcode: QRCodeEntity)
 
-    @Query("SELECT * FROM test WHERE id = :id")
+    @Query("SELECT * FROM qrcode WHERE id = :id")
     suspend fun getQrCodeById(id: String): QRCodeEntity?
 
-    @Query("SELECT * FROM test")
+    @Query("SELECT * FROM qrcode")
     suspend fun getAllQrCodes(): List<QRCodeEntity>
 }
